@@ -1,0 +1,1 @@
+total_cost = ticket_price * ticket

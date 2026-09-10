@@ -1,0 +1,34 @@
+🏦 Mini Project: Simple ATM Simulator
+
+Write a Python program that simulates a basic ATM.
+
+Initial values:
+
+Balance = ₹5000
+PIN = 1234
+Requirements
+Ask the user to enter the PIN.
+If the PIN is incorrect, display "Invalid PIN" and stop.
+If correct, display the ATM menu:
+===== ATM MENU =====
+1. Check Balance
+2. Deposit
+3. Withdraw
+4. Change PIN
+5. Account Info
+6. Exit
+Use a while loop to keep showing the menu.
+Check Balance: Display the current balance.
+Deposit: Ask for an amount and add it to the balance. Do not accept negative amounts.
+Withdraw: Ask for an amount and subtract it from the balance. Do not allow negative amounts or withdrawals greater than the balance.
+Exit: Display "Thank you for using the ATM" and stop the program.
+For any other choice, display "Invalid choice".
+Concepts to Use
+Variables
+input()
+Type conversion
+Arithmetic operators
+if-elif-else
+while
+break
+match-case

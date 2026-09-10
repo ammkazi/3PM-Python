@@ -1,0 +1,4 @@
+WAP in python to print sum of first 10 numbers
+WAP in python to print sum of first ten odd numbers
+WAP in python to print sum of first ten even numbers
+WAP for fibonacci series, take nth term from user

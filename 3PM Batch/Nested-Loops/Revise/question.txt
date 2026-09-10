@@ -1,0 +1,6 @@
+Classroom Attendance
+There are 5 students and 5 days. Ask whether each student was present (P) or absent (A). At the end, classify each student:
+5 days → "Perfect Attendance"
+3–4 days → "Good"
+1–2 days → "Poor"
+0 days → "Absent All Week"
