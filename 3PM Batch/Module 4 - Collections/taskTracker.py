@@ -3,10 +3,12 @@ tasks = []
 
 next_id = 1
 
+PRIORITIES = {"HIGH", "MEDIUM", "LOW"}
+
 while True:
-    print("\n" + "=" * 60)
-    print("Taskly : A Terminal Task Manager".center(60))
-    print("=" * 60)
+    print("\n" + "=" * 78)
+    print("Taskly : A Terminal Task Manager".center(78))
+    print("=" * 78)
 
 
     # Display menu options
@@ -56,6 +58,7 @@ while True:
             priority = "LOW"
         else:
             priority = "MEDIUM"
+            print("Invalid priority, MEDIUM assigned as default.")
     
         task = {
             "id" : next_id,
@@ -76,11 +79,26 @@ while True:
             print("\nNo tasks available.")
             continue
 
-        # Display tasks
-        print("\nTasks: ")
+        ordered_tasks = [
+            task for priority in PRIORITIES 
+            for task in tasks
+            if task["priority"] == priority
+        ]
 
-        for task in tasks:
-            print(f"{task["id"]} - {task["title"]} [{task["status"]}] ")
+
+        # Display tasks
+        print("\n" + "=" * 78)
+        print(f"{'ID':<6}"
+              f"{'PRIORITY':<12}"
+              f"{'STATUS':<16}"
+              f"{'TASK TITLE':<44}")
+        print("=" * 78)
+        for task in ordered_tasks:
+            print(f"{task['id']:<6}"
+                  f"{task['priority']:<12}"
+                  f"{task['status']:<16}"
+                  f"{task['title']:<44}")
+        print("=" * 78)
 
         task_id = input("\nEnter task ID to update: ").strip()
         selected = [task for task in tasks if str(task["id"]) == task_id]
@@ -110,10 +128,27 @@ while True:
             print("\nNo tasks available.")
             continue
 
-        for task in tasks:
-            print(f"{task["id"]} - {task["title"]} [{task["status"]}] ")
+        ordered_tasks = [
+                    task for priority in PRIORITIES 
+                    for task in tasks
+                    if task["priority"] == priority
+                ]
+
+        print(f"{'ID':<6}"
+            f"{'PRIORITY':<12}"
+            f"{'STATUS':<16}"
+            f"{'TASK TITLE':<44}")
+        print("=" * 78)
+        
+        for task in ordered_tasks:
+                    print(f"{task['id']:<6}"
+                          f"{task['priority']:<12}"
+                          f"{task['status']:<16}"
+                          f"{task['title']:<44}")
+        print("=" * 78)
 
         task_id = input("\nEnter task ID to delete: ").strip()
+        
         new_tasks = [
             task
             for task in tasks
