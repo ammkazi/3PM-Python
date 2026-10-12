@@ -3,7 +3,7 @@ tasks = []
 
 next_id = 1
 
-PRIORITIES = {"HIGH", "MEDIUM", "LOW"}
+PRIORITIES = ["HIGH", "MEDIUM", "LOW"]
 
 while True:
     print("\n" + "=" * 78)
@@ -169,11 +169,32 @@ while True:
             print("\nNo tasks available.")
             continue
 
-        print("\nTasks:")
+        ordered_tasks = [
+                    task
+                    for priority in PRIORITIES
+                    for task in tasks
+                    if task["priority"] == priority
+                ]
+        print("\n" + "-" * 78)
+        print(
+                    f"{'ID':<6}"
+                    f"{'PRIORITY':<12}"
+                    f"{'STATUS':<16}"
+                    f"{'TASK TITLE':<44}"
+                )
+        print("-" * 78)
         
-        for task in tasks:
-            print(f"{task['id']} - {task['title']} [{task['status']}]")
-
+                # Display all tasks.
+        for task in ordered_tasks:
+            print(
+                f"{task['id']:<6}"
+                f"{task['priority']:<12}"
+                f"{task['status']:<16}"
+                f"{task['title']:<44}"
+            )
+        
+        print("-" * 78)
+        
         task_id = input("\nEnter task ID to change its status: ").strip()
         selected = [task for task in tasks if str(task["id"]) == task_id]
 
@@ -208,7 +229,245 @@ while True:
 
         print(f"\nTask #{task_id} status changed to {task["status"]}.")
 
-        
-        
-        
-        
+    # 5. List all tasks
+    elif choice == "5": 
+        if len(tasks) == 0:
+            print("\nNo tasks available.")
+            continue
+
+        ordered_tasks = [
+            task
+            for priority in PRIORITIES
+            for task in tasks
+            if task['priority'] == priority
+        ]
+
+        print("\nALL TASKS")
+        print("-" * 78)
+        print(
+            f"{'ID':<6}"
+            f"{'PRIORITY':<12}"
+            f"{'STATUS':<16}"
+            f"{'TASK TITLE':<44}"
+        )
+        print("-" * 78)
+
+        for task in ordered_tasks:
+            print(
+                f"{task['id']:<6}"
+                f"{task['priority']:<12}"
+                f"{task['status']:<16}"
+                f"{task['title']:<44}"
+            )
+
+        print("-" * 78)
+
+    # 6. List done tasks
+    elif choice == "6":
+        done_tasks = [
+            task
+            for priority in PRIORITIES
+            for task in tasks
+            if task['priority'] == priority
+            and task['status'] == "DONE"
+        ]
+
+        if len(done_tasks) == 0:
+            print("\nNo completed tasks.")
+            continue
+
+        print("\nDONE TASKS")
+        print("-" * 78)
+        print(
+            f"{'ID':<6}"
+            f"{'PRIORITY':<12}"
+            f"{'STATUS':<16}"
+            f"{'TASK TITLE':<44}"
+        )
+        print("-" * 78)
+        for task in done_tasks:
+                print(
+                    f"{task['id']:<6}"
+                    f"{task['priority']:<12}"
+                    f"{task['status']:<16}"
+                    f"{task['title']:<44}"
+                )
+
+        print("-" * 78) 
+
+    # 7. List pending tasks
+    elif choice == "7":
+        pending_tasks = [
+                task
+                for priority in PRIORITIES
+                for task in tasks
+                if task["priority"] == priority
+                and task["status"] == "PENDING"
+            ]
+
+        if len(pending_tasks) == 0:
+                print("\nNo pending tasks.")
+                continue
+
+            # Display the table heading.
+        print("\nPENDING TASKS")
+        print("-" * 78)
+        print(
+            f"{'ID':<6}"
+            f"{'PRIORITY':<12}"
+            f"{'STATUS':<16}"
+            f"{'TASK TITLE':<44}"
+        )
+        print("-" * 78)
+
+            # Display pending tasks in priority order.
+        for task in pending_tasks:
+            print(
+                f"{task['id']:<6}"
+                f"{task['priority']:<12}"
+                f"{task['status']:<16}"
+                f"{task['title']:<44}"
+            )
+        print("-" * 78)
+
+    #8. LIST IN-PROGRESS TASKS
+
+    elif choice == "8":
+
+        # Select in-progress tasks and arrange them by priority.
+        progress_tasks = [
+            task
+            for priority in PRIORITIES
+            for task in tasks
+            if task["priority"] == priority
+            and task["status"] == "IN PROGRESS"
+        ]   
+        # Check whether any in-progress tasks exist.
+        if len(progress_tasks) == 0:
+            print("\nNo in-progress tasks.")
+            continue    
+        # Display the table heading.
+        print("\nIN-PROGRESS TASKS")
+        print("-" * 78)
+        print(
+            f"{'ID':<6}"
+            f"{'PRIORITY':<12}"
+            f"{'STATUS':<16}"
+            f"{'TASK TITLE':<44}"
+        )
+        print("-" * 78) 
+        # Display in-progress tasks in priority order.
+        for task in progress_tasks:
+            print(
+                f"{task['id']:<6}"
+                f"{task['priority']:<12}"
+                f"{task['status']:<16}"
+                f"{task['title']:<44}"
+            )   
+        print("-" * 78)
+
+    #9. search tasks
+    elif choice == "9":
+        search = input("Enter text top search: ").strip().lower()
+
+        matches = [
+            task
+            for priority in PRIORITIES
+            for task in tasks
+            if task['priority'] == priority
+            and search in task['title'].lower()
+        ]
+
+        if len(matches) == 0:
+            print("\nNo matching tasks.")
+            continue
+
+        print(f"\n{len(matches)} matching task(s)")
+
+        print("-" * 78)
+        print(
+            f"{'ID':<6}"
+            f"{'PRIORITY':<12}"
+            f"{'STATUS':<16}"
+            f"{'TASK TITLE':<44}"
+        )
+        print("-" * 78)
+
+        # Display matching tasks in priority order.
+        for task in matches:
+            print(
+                f"{task['id']:<6}"
+                f"{task['priority']:<12}"
+                f"{task['status']:<16}"
+                f"{task['title']:<44}"
+            )
+
+        print("-" * 78)
+
+    #10. Statistics feature
+    elif choice == "10":
+         # Count all tasks.
+        total = len(tasks)
+
+        # Count tasks marked DONE.
+        done = len([
+            task for task in tasks
+            if task["status"] == "DONE"
+        ])
+
+        # Count tasks marked PENDING.
+        pending = len([
+            task for task in tasks
+            if task["status"] == "PENDING"
+        ])
+
+        # Count tasks marked IN PROGRESS.
+        progress = len([
+            task for task in tasks
+            if task["status"] == "IN PROGRESS"
+        ])
+
+        # Count HIGH priority tasks.
+        high = len([
+            task for task in tasks
+            if task["priority"] == "HIGH"
+        ])
+
+        # Count MEDIUM priority tasks.
+        medium = len([
+            task for task in tasks
+            if task["priority"] == "MEDIUM"
+        ])
+
+        # Count LOW priority tasks.
+        low = len([
+            task for task in tasks
+            if task["priority"] == "LOW"
+        ])
+
+        # Display the statistics heading.
+        print("\nTASK STATISTICS")
+        print("-" * 42)
+
+        # Display task totals and status counts.
+        print(f"{'Total Tasks':<20}: {total}")
+        print(f"{'Pending':<20}: {pending}")
+        print(f"{'In Progress':<20}: {progress}")
+        print(f"{'Done':<20}: {done}")
+
+        # Calculate completion percentage when tasks exist.
+        if total > 0:
+            percentage = done / total * 100
+        else:
+            percentage = 0
+
+        # Display completion percentage.
+        print(f"{'Completion':<20}: {percentage:.0f}%")
+
+        # Display the priority counts.
+        print("\nPRIORITY BREAKDOWN")
+        print(f"{'HIGH':<20}: {high}")
+        print(f"{'MEDIUM':<20}: {medium}")
+        print(f"{'LOW':<20}: {low}")
+
+        print("-" * 42)
