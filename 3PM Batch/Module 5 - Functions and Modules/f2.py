@@ -4,5 +4,7 @@ def add():
     print(a + b)
 
 
-print("Sum of a + b is: ",)
+# print("Sum of a + b is: ",)
+# add()
+print("Sum of a + b is: ")
 add()

@@ -1,9 +1,9 @@
-# Functions iwth parameters and arguments
+# Functions with parameters and arguments
 
-def greet(name):
-    print("Hello ", name)
+def greet(name, surname):
+    print("Hello ", name, " ", surname)
 
 
-greet("Kaif")
-greet("Sahil")
-greet("Zeeshan")
+greet("Sange", "Kaif")
+greet("Sahil", "Shaikh")
+greet("Zeeshan", "Dhorajiwala")

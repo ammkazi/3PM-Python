@@ -1,6 +1,16 @@
-def table(n):
-    for i in range(1,11):
-        print(f"{n} x {i} = {n*i}")
+def userLogin(name, password):
+    if name == "Zeeshan" and password == "abc123":
+        return "Login Successfully"
+    else:
+        return "Login failed."
 
-n = int(input("Enter a number to print its table: "))
-table(n)
+def display(status):
+    print(status)
+
+
+uname = input("Enter username: ")
+password = input("Enter password: ")
+
+result = userLogin(uname, password)
+
+display(result)

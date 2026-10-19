@@ -1,6 +1,10 @@
-def analyse(marks):
-    return sum(marks), max(marks), min(marks), sum(marks) / len(marks)
+def add_print(a, b):
+    print(a + b)
 
-total , max, min , avg = analyse([78,80,40,58,94,33])
+def add_return(a, b):
+     return a + b
 
-print(f"Total {total}, high {max}, low {min}, avg {avg:.2f}")
+x = add_print(2, 3) # prints 5, returns None
+y = add_return(2, 3) # prints nothing, returns 
+print("x is", x)
+print("y is", y)

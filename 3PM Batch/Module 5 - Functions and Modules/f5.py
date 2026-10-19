@@ -1,10 +1,9 @@
-# Function returning values
-def add(a, b):
+def add(a,b):
     return a + b
 
+sum = add(b=15,a=45)
+print(sum)
 
-def display(value):
-    print("The sum of a + b is:", value)
+result = sum / 4
+print(result)
 
-result = add(20,30)
-display(result)
